@@ -58,6 +58,13 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      animation: driftAway 2s infinite; /* Continuous animation */
+    }
+
+    @keyframes driftAway {
+      to {
+        transform: translate(calc(100vw * var(--random-x)), calc(100vh * var(--random-y)));
+      }
     }
   </style>
 </head>
@@ -69,22 +76,18 @@
     </div>
     <div id="lower-section">
       <button id="yes" onclick="redirectToNewPage()">Yes</button>
-      <button id="no" onmouseover="driftAway()" onclick="alert('You chose No!')">No</button>
+      <button id="no" onclick="alert('You chose No!')">No</button>
     </div>
   </div>
 
   <script>
-    function driftAway() {
-      var noButton = document.getElementById('no');
-      var newX = Math.random() * (window.innerWidth - 150); // Adjust the range as needed
-      var newY = Math.random() * (window.innerHeight - 50); // Adjust the range as needed
-      noButton.style.left = newX + 'px';
-      noButton.style.top = newY + 'px';
-    }
-
     function redirectToNewPage() {
       window.location.href = 'samrat.html'; // Redirect to newpage.html
     }
+
+    // Set random values for continuous animation
+    document.getElementById('no').style.setProperty('--random-x', Math.random());
+    document.getElementById('no').style.setProperty('--random-y', Math.random());
   </script>
 
 </body>
